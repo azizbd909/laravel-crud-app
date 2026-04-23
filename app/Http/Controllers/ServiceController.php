@@ -33,7 +33,24 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'nullable',
+            'mrp_price' => 'required',
+            'selling_price' => 'required',
+            'offer_price' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $data = $request->all();
+
+        if($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('services', 'public');
+        }
+
+        Service::create($data);
+
+        return redirect()->route('services.index')->with('success', 'Service created successfully.');
     }
 
     /**
