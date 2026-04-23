@@ -66,7 +66,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('services.edit', compact('service'));
     }
 
     /**
@@ -74,7 +74,24 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'nullable',
+            'mrp_price' => 'required',
+            'selling_price' => 'required',
+            'offer_price' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $data = $request->all();
+        
+        if($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('services', 'public');  
+        }
+
+        $service->update($data);
+
+        return redirect()->route('services.index')->with('success', 'Service updated successfully');
     }
 
     /**
