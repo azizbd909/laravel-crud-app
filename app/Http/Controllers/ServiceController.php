@@ -81,7 +81,7 @@ class ServiceController extends Controller
             'mrp_price' => 'required',
             'selling_price' => 'required',
             'offer_price' => 'required',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:1024'
         ]);
 
         $data = $request->all();
