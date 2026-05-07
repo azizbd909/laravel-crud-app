@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,5 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('services', ServiceController::class);
+    Route::resource('admin/services', ServiceController::class);
 });
