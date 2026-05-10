@@ -22,7 +22,7 @@ class ServiceFrontendController extends Controller
     public function book(Service $service)
     {
         $services = Service::all(); // needed for the dropdown
-        return view('services.book', compact('service', 'services'));
+        return view('service_frontend.book', compact('service', 'services'));
     }
 
     /**

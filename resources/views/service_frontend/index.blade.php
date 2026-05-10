@@ -212,7 +212,7 @@
 
                     <div class="card-overlay"></div>
 
-                    <a class="book-btn" href="#">
+                    <a class="book-btn" href="{{ route('frontend_services.book', $service->id) }}">
                         Book Now
                     </a>
                 </div>

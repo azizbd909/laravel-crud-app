@@ -19,7 +19,14 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [ServiceFrontendController::class, 'index']);
+// Services listing page
+Route::get('/', [ServiceFrontendController::class, 'index'])->name('frontend_services.index');
+
+// Booking form page (service pre-selected via route model binding)
+Route::get('/services/{service}/book', [ServiceFrontendController::class, 'book'])->name('frontend_services.book');
+
+// Handle booking form submission
+Route::post('/services/book', [ServiceFrontendController::class, 'submitBooking'])->name('frontend_services.submit-booking');
 
 Auth::routes();
 
